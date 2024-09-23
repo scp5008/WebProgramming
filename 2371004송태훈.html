@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>객체 생성</title>
+    <script>
+        function Web_class(korName, engName, classCode, nStudent) {
+            this.korName = korName;
+            this.engName = engName;
+            this.classCode = classCode;
+            this.nStudent = nStudent;
+
+            this.register = function () {this.nStudent ++;}
+            this.unregister = function () {
+                this.nStudent --;
+            }
+            this.getStudentCount = function () {return this.nStudent;}
+        };
+        </script>
+        <script>
+        let Property2 = {
+            korName : "웹프로그래밍",
+            engName : "Web Programming",
+            classCode : "V024003",
+            nStudent : 0,
+
+            register : function (Student) {this.nStudent += Student;},
+            unregister : function (Student) {
+                this.nStudent -= Student;
+                return Student;
+            },
+            getStudentCount : function () {return this.nStudent;}
+        };
+        </script>
+        <script>
+        function register(Student) {this.nStudent += Student;}
+        function unregister(Student) {
+            this.nStudent -= Student;
+            return Student;
+        }
+        function getStudentCount() {return this.nStudent;}
+
+        let Property3 = new Object();
+        Property3.korName = "웹프로그래밍";
+        Property3.engName = "Web Programming";
+        Property3.classCode = "V024003";
+        Property3.nStudent = 0;
+        Property3.register = register;
+        Property3.unregister = unregister;
+        Property3.getStudentCount = getStudentCount;
+    </script>
+</head>
+<body>
+    <h3>1. 직접 개체 만들기</h3>
+    <br>
+    <script>
+        document.write("교과목 이름 = ");
+        document.write(Property3.korName + "<br>");
+        document.write("등록 학생 수 = ");
+        document.write(Property3.nStudent + "<br>");
+
+        Property3.register(1);
+        document.write("after register, 등록 학생 수 = " + Property3.getStudentCount() + "<hr>");
+    </script>
+    <h3>2. 리터럴 표기법</h3>
+    <br>
+    <script>
+        document.write("교과목 이름 = ");
+        document.write(Property2.korName + "<br>");
+        document.write("등록 학생 수 = ");
+        document.write(Property2.nStudent + "<br>");
+
+        Property2.register(1);
+        document.write("after register, 등록 학생 수 = " + Property2.getStudentCount() + "<hr>");
+    </script>
+    <h3>3. Prototype</h3>
+    <br>
+    <script>
+        let Property1 = new Web_class("웹 프로그래밍", "Web Programming", "V024003", 0);
+
+        document.write("교과목 이름 = ");
+        document.write(Property1.korName + "<br>");
+        document.write("등록 학생 수 = ");
+        document.write(Property1.nStudent + "<br>");
+
+        Property1.register(1);
+        document.write("after register, 등록 학생 수 = " + Property1.getStudentCount() + "<br>");
+    </script>
+</body>
+</html>
